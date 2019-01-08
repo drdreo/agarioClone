@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--BOOTSTRAP-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--FOUNDATION -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/css/foundation-float.css">
+
+    <!--Game Styles-->
+    <link rel="stylesheet" href="css/agario.css"/>
+    <title>Agario Client</title>
+</head>
+
+<body class="">
+
+
+<div class="row medium-4 align-center login-container">
+
+
+    <div class="login-form">
+        <h4 class="text-center">Sign In</h4>
+        <div class="row column medium-12">
+            <label for="username">Username</label>
+            <input id="username" class="login-form-username" type="text" value="" placeholder="Enter your username..."
+                   autofocus/>
+        </div>
+        <div class="row medium-4 column">
+            <label for="color">Color</label>
+            <input id="color" class="login-form-color" value="#D5D2A0" type="color" title="Color for the Cell"/>
+        </div>
+        <button id="join" class="button login-form-button">Join</button>
+    </div>
+
+
+</div>
+
+
+<div class="off-canvas position-left is-closed" data-transition="overlap" id="menu"
+     data-off-canvas>
+    <div class="callout">
+        <p>Ping: <span id="ping"></span>ms</p>
+    </div>
+    <button class="button" id="disconnect">Disconnect</button>
+    <div id="messages"></div>
+</div>
+
+
+<div class="off-canvas-content" data-off-canvas-content>
+    <div class="game-container hide">
+        <canvas id="field" style="background-color: aliceblue">
+
+        </canvas>
+    </div>
+</div>
+<!--JQUERY-->
+<script src="js/vendor/jquery.js"></script>
+<!--FOUNDATION SCRIPT-->
+<script src="js/vendor/foundation.min.js"></script>
+<!--SOCKET.IO-->
+<!--<script src="http://192912.168:9991/socket.io/socket.io.js"></script>-->
+<script src="http://localhost:9991/socket.io/socket.io.js"></script>
+
+<!--client scripts-->
+<script src="game/Vector.js"></script>
+<script src="game/cell.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    $(document).foundation();
+
+    function generateRandomColor() {
+        var r, g, b;
+        r = ~~(Math.random() * 255);
+        g = ~~(Math.random() * 255);
+        b = ~~(Math.random() * 255);
+
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
+        }
+
+        var hex = "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        return {hex: hex, rgb: "rgb(" + [r, g, b].join(',') + ")"};
+    }
+
+
+    $('#color').val(generateRandomColor().hex);
+</script>
+</body>
+</html>

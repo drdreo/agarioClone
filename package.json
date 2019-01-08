@@ -1,0 +1,15 @@
+{
+  "name": "agario",
+  "version": "1.0.0",
+  "description": "Agar.IO game clone.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author": "Andreas Hahn",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.3"
+  }
+}
